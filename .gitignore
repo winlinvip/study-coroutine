@@ -1,1 +1,7 @@
 .idea
+go-client/go-client
+go-server/go-server
+st-server/st-1.9/LINUX_4.9.184-linuxkit_DBG/
+st-server/st-1.9/obj
+st-server/st-1.9/st.pc
+st-server/st-server
