@@ -10,11 +10,12 @@ import (
 )
 
 func main() {
-	var nnClients,interval int
+	var nnClients, interval, startup int
 	flag.IntVar(&nnClients, "c", 1, "The number of clients")
 	flag.IntVar(&interval, "i", 60, "The interval in seconds")
+	flag.IntVar(&startup, "s", 5, "The startup time in seconds")
 	flag.Parse()
-	fmt.Println(fmt.Sprintf("clients=%v, interval=%vs", nnClients, interval))
+	fmt.Println(fmt.Sprintf("clients=%v, interval=%vs, startup=%vs", nnClients, interval, startup))
 
 	var wg sync.WaitGroup
 	for i := 0; i < nnClients; i++ {
@@ -22,7 +23,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 
-			time.Sleep(time.Duration(rand.Int()%5000) * time.Millisecond)
+			time.Sleep(time.Duration(rand.Int()%(startup*1000)) * time.Millisecond)
 
 			addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8080")
 			if err != nil {

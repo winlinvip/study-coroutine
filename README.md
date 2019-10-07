@@ -7,6 +7,7 @@ Study ST(state-threads) and Go(goroutine).
 First, clone this git and start docker:
 
 ```
+docker pull ossrs/dev &&
 git clone https://github.com/winlinvip/study-coroutine.git && 
 cd study-coroutine && docker run -it -v `pwd`:/tmp -w /tmp ossrs/dev bash
 ```
@@ -32,7 +33,7 @@ Run go-client with 10k connections:
 
 ```
 dockerID=`docker ps --format "{{.ID}} {{.Image}}" |grep 'ossrs/dev' |awk '{print $1}'` &&
-docker exec -it $dockerID ./go-client/go-client -c 10000
+docker exec -it $dockerID ./go-client/go-client -c 60000 -s 90
 ```
 
 To stop server:
@@ -53,7 +54,7 @@ Run go-client with 10k connections:
 
 ```
 dockerID=`docker ps --format "{{.ID}} {{.Image}}" |grep 'ossrs/dev' |awk '{print $1}'` &&
-docker exec -it $dockerID ./go-client/go-client -c 10000
+docker exec -it $dockerID ./go-client/go-client -c 60000 -s 90
 ```
 
 To stop server:
